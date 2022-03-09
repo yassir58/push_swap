@@ -1,120 +1,100 @@
 #include "push_swap.h"
 
 
-
-int *find_len_arr (int *arr, int size)
+int get_max (int a, int b)
 {
+    if (a > b)
+        return (a);
+    return (b);
+}
+
+void find_lis (t_stack **top)
+{
+    t_stack *tmp_i;
+    t_stack *tmp_j;
+    int len;
     int i;
     int j;
-    int *len_arr;
-    int k;
 
     i = 0;
     j = 0;
-    len_arr = malloc (sizeof (int) * size);
-    if (!len_arr)
-        return (NULL);
-    k = 0;
-    while (k < size)
+    len = stack_length (*top);
+    tmp_i = *top;
+    while (i < len)
     {
-        len_arr[k] = 1;
-        k++;
-    }
-    while (i < size)
-    {
+        tmp_j = *top;
         while (j < i)
         {
-            if (arr[j] < arr[i])
-                len_arr[i] = len_arr[j] + 1;
+            
+            if (tmp_i->data > tmp_j->data && (tmp_j->len + 1) > tmp_i->len)
+            {
+                tmp_i->len =  tmp_j->len  + 1;
+                tmp_i->indx = j;
+            }
+            tmp_j = tmp_j->next;
             j++;
         }
-        j = 0;
         i++;
+        tmp_i = tmp_i->next;
+        j = 0;
     }
-    return (len_arr);
 }
 
 
 
-int *find_indx_arr (int size)
+int get_pos (t_stack **top)
 {
-    int k;
-    int *indx_arr;
-
-    indx_arr = malloc(sizeof(int) * size);
-    if (!indx_arr)
-        return (NULL);
-    k = 0;
-    while (k < size)
-        indx_arr[k++] = -1;
-    return (indx_arr);
-}
-
-
-int get_pos (int *len_arr, int size)
-{
-    int i;
-    int temp;
     int pos;
+    int i;
+    t_stack *tmp_top;
+    int temp;
 
-    i = 1;
-    temp = len_arr[0];
+
+    i = 0;
     temp = 0;
-    pos = 0;
-    while (i < size)
+    tmp_top = *top;
+    while (i < stack_length (*top))
     {
-        if (len_arr[i] > temp)
+        if (tmp_top->len > temp)
         {
-            temp = len_arr[i];
-            pos = i ;
+            temp = tmp_top->len;
+            pos = i;
         }
+        tmp_top = tmp_top->next;
         i++;
     }
     return (pos);
 }
 
-int *construct_lis (int *arr, int *indx_arr, int *len_arr, int size, int max)
+int get_indx (int pos, t_stack **top)
 {
-    int pos;
-    int i;
-    int *lis;
-
-    pos = get_pos(len_arr, size);
-    i = 0;
-    lis = malloc (sizeof (int) * max);
-    if (!lis)
-        return (NULL);
-    while (i < max)
-        lis[i++] = 0;
-    i = 0;
-    while (pos != -1 && i < max)
-    {
-        lis[i++] = arr[pos];
-        pos = indx_arr[pos];
-    }
-    return (lis);
-}
-
-
-int *init_lis (int *lis , int  size, int c)
-{
-    int i;
-
-    i = 0;
-    while (i < size)
-        lis [i++] = c;
-    return (lis);
-}
-
-
-void mark_elm (t_stack **A, int elm)
-{
-    int indx;
     t_stack *temp;
 
-    indx = get_elm_indx (A, elm);
-    temp = *A;
-    while (temp && indx--)
+    temp = *top;
+    while (pos--)
+        temp = temp->next;
+    return (temp->indx);    
+}
+
+void get_elm (t_stack **top, int indx)
+{
+    t_stack *temp;
+
+    temp = *top;
+    while (indx--)
         temp = temp->next;
     temp->lis = 1;
+}
+
+void mark_elements (int pos, t_stack **top)
+{
+    int pos_tmp;
+
+    pos_tmp = pos;
+    while (pos_tmp != -1)
+    {
+        get_elm (top, pos_tmp);
+        pos_tmp = get_indx (pos_tmp, top);
+    }
+
 }

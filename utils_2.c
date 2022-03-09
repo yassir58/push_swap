@@ -31,11 +31,11 @@ void create_stack (t_stack **top, int argc, char *argv[])
     indx = 0;
     A = NULL;
 
-    A = create_node (atoi(argv[1]), indx++);
+    A = create_node (atoi(argv[1]));
     *top = A;
     while (i <= (argc - 1))
     {
-        push_elm (top, create_node (atoi(argv[i++]), indx++));
+        push_elm (top, create_node (atoi(argv[i++])));
     }
 
 }

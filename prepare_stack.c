@@ -2,46 +2,57 @@
 
 
 
-t_stack *copy_stack (int *arr, int size)
+int count_len (t_stack **top)
 {
-    t_stack *temp_stack;
-    t_stack *node;
-    
-    temp_stack = create_node (arr[size-- - 1], 0);
-    while (size--)
+    t_stack *tmp;
+    int len;
+
+    len = 0;
+    tmp = *top;
+    while (tmp)
     {
-        node = create_node (arr[size], 0);
-        push_elm (&temp_stack, node);
+        if (tmp->lis == 0)
+            len++;
+        tmp = tmp->next;
     }
-    return (temp_stack);
+    return (len);
 }
 
 void  prepare_stack(t_stack **stack)
 {
-    int min;
-    int min_indx;
-
-    min = stack_min (*stack);
-    min_indx = get_elm_indx (stack, min);
-    position_elm_top (stack, min_indx);
+    find_lis (stack);
+    mark_elements (get_pos (stack), stack);
 }
 
-void move_non_lis (t_stack **A, t_stack **B,int *arr, int size)
+void move_non_lis (t_stack **A, t_stack **B)
 {
-    int *indx_arr;
-    int *len_arr;
-    int *lis;
-    int max = 0;
+    t_stack *tmp_a;
+    int len;
 
+    tmp_a = *A;
+    len = count_len (A);
+    while (tmp_a  && len)
+    {
+        if (tmp_a->lis == 0)
+        {
+            push_element (A, B, 'b');
+            len--;
+        }
+        rotate_stack (A, 'a');
+        tmp_a = *A;
+    }
+}
 
-    indx_arr  = find_indx_arr (size);
-    len_arr = test_len_arr (arr, size, &indx_arr);
-    max = arr_max (len_arr, size);
-    lis = construct_lis (arr, indx_arr, len_arr, size, max);
-    extract_elm (A, lis, max);
-    move_non_lis_to_B (A, B); 
-   
-    free (lis);
-    free (len_arr);
-    free (indx_arr);
+pos *best_position (int *a_pos, int *b_pos, pos *elm_pos)
+{
+    if ((a_pos[0] + b_pos[0]) > (elm_pos->a_pos + elm_pos->b_pos))
+    {
+        if (max_elm (a_pos[0], b_pos[0]) < (elm_pos->a_pos + elm_pos->b_pos))
+            return (update_pos (elm_pos, a_pos, b_pos));
+    }
+    if ((a_pos[0] + b_pos[0]) < (elm_pos->a_pos + elm_pos->b_pos))
+        return (update_pos (elm_pos, a_pos, b_pos));
+    free (a_pos);
+    free (b_pos);
+    return (elm_pos);
 }

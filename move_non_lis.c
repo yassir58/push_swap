@@ -9,29 +9,6 @@ int move_non_lis ()
 
 }*/
 
-void extract_elm (t_stack **A, int *lis, int size)
-{
-    int i; 
-    t_stack *temp;
-
-    i = 0;
-    temp = *A;
-    mark_elm (A, stack_min (*A));
-    while (i < size)
-    {
-        while (temp)
-        {
-            if (temp->data == lis[i])
-            {
-                temp->lis = 1;
-                break;
-            }
-            temp = temp->next;
-        }
-        i++;
-        temp = *A;
-    }
-}
 
 
 int *best_elm_to_extract (t_stack **A)

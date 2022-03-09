@@ -84,14 +84,15 @@ int get_elm_indx (t_stack **stack, int elm)
     return (0);
 }
 
-t_stack *create_node (int data, int indx)
+t_stack *create_node (int data)
 {
     t_stack *node;
 
     node = malloc (sizeof (t_stack));
     node->data = data;
     node->lis = 0;
-    node->indx = indx;
+    node->indx = -1;
+    node->len = 1;
     node->next = NULL;
     return (node);
 }

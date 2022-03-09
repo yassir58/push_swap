@@ -3,47 +3,29 @@
 
 
 
+pos *find_best (t_stack **A, int elm)
+{
+    t_stack *top;
+
+    
+}
 
 pos *calculate_best_elm (t_stack **A, t_stack **B)
 {
     t_stack *temp_a;
     t_stack *temp_b;
-    pos *elm_pos;
-    int *a_pos;
-    int *b_pos;
+    pos *tmp;
         
-
     temp_b = *B;
     temp_a = *A;
-    elm_pos = init_pos (A, B);    
-
+    
     while (temp_b)
     {
-        if (temp_b->data == stack_max (*B) && temp_b->data > stack_max (*A))
-        {
-            free (elm_pos);
-            return (get_max_pos (A, B,  temp_b->data));
-        }
-        while (temp_a)
-        {
-            if (temp_a->data < temp_b->data && temp_a->next && 
-            temp_a->next->data > temp_b->data)
-            {
-                a_pos = check_position (A,get_elm_indx (A, temp_a->next->data));
-                b_pos = check_position (B, get_elm_indx (B, temp_b->data));
-                if ((a_pos[0] + b_pos[0]) < (elm_pos->a_pos + elm_pos->b_pos))
-                    elm_pos = update_pos (elm_pos, a_pos, b_pos);
-                free (a_pos);
-                free (b_pos);
-            }
-            temp_a = temp_a->next;
-        }
+        tmp = find_best (A, temp_b->data);
+        printf ("--> elm |%d| a pos |%d| b pos |%d| \n", temp_b->data , tmp->a_pos, tmp->b_pos);
         temp_b = temp_b->next;
-        temp_a = *A;
-        
     }
-  
-    return (elm_pos);
+    return (NULL);
 }
 
 void sort_stack (t_stack **A, t_stack **B)
@@ -81,6 +63,8 @@ pos *update_pos (pos *elm_pos, int *temp_pos_a, int *temp_pos_b)
     elm_pos->b_pos = temp_pos_b[0];
     elm_pos->a_rotate = temp_pos_a[1];
     elm_pos->b_rotate = temp_pos_b[1];
+    free (temp_pos_a);
+    free (temp_pos_b);
     return (elm_pos);
 }
 

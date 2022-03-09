@@ -4,8 +4,8 @@
 void rotate_r (t_stack **A, t_stack **B)
 {
     if (*A && *B)
-    rotate_stack (A, 'a');
-    rotate_stack (B, 'b');
+    rotate_stack (A, '0');
+    rotate_stack (B, '0');
     write (1, "rr\n",4);
 }
 
@@ -37,8 +37,8 @@ void r_rotate_r (t_stack **A, t_stack **B)
 {
     if (*A && *B)
     {
-        r_rotate_stack (A, 'a');
-        r_rotate_stack (B, 'b');
+        r_rotate_stack (A, '0');
+        r_rotate_stack (B, '0');
         write (1, "rrr\n",5);
     }
 }

@@ -1,32 +1,36 @@
 #include "push_swap.h"
 
 
-void swap_element (t_stack **stack, char c)
+void swap_element (t_stack **top, char c)
 {
     t_stack *next;
-    t_stack *top;
+    t_stack *elm;
+    int tmp;
 
-    if (*stack != NULL)
+
+    if (*top != NULL)
     {
-        top = pop_elm (stack);
-        next = pop_elm (stack);
-        push_elm (stack, top);
-        push_elm (stack, next);
+        elm = *top;
+        next = elm->next;
+        tmp = elm->data;
+        elm->data = next->data;
+        next->data = tmp;
         if (c == 'a')
             write (1, "sa\n", 4);
         else if (c == 'b')
             write (1, "sb\n", 4);
-    }
+    } 
 }
+
 
 void swap_s (t_stack **A, t_stack **B)
 {
-   swap_element (A, 'a');
-   swap_element (B, 'b');
+    swap_element (A, '0');
+    swap_element (B, '0');
     write (1, "ss\n",4);
 }
 
-int push_element (t_stack **A, t_stack **B, char c)
+void push_element (t_stack **A, t_stack **B,char c)
 {
       t_stack *temp;
       t_stack **tmp_stack;
@@ -49,12 +53,10 @@ int push_element (t_stack **A, t_stack **B, char c)
         temp = pop_elm (tmp_stack);
         push_elm (push_to, temp);
     }
-    return (stack_length (*tmp_stack));
 }
 
 void rotate_stack (t_stack **stack, char c)
 {
-
     t_stack *temp;
     t_stack *top;
 
@@ -68,7 +70,7 @@ void rotate_stack (t_stack **stack, char c)
             temp = temp->next;
         }
         temp->next = top;
-        top->next = NULL;
+        temp->next->next = NULL;
         if (c == 'a')
             write (1, "ra\n", 4);
         else if (c == 'b')

@@ -32,45 +32,48 @@ int main (int argc, char *argv [])
     create_stack (&top, argc, argv);
     check_for_duplicate (top);
     check_if_sorted (top);
-
-    int len = stack_length(top);
-   
-    int *arr;
-    t_stack *temp;
-    arr = convert_to_array (&top, len);
-    t_stack *temp_stack;
-    temp_stack = copy_stack (arr, len); 
-    prepare_stack (&temp_stack);
-    free (arr);
-    arr = convert_to_array (&temp_stack, len);
-    move_non_lis (&top, &B, arr, len);
+    //t_stack *temp;
+    prepare_stack (&top);
+    move_non_lis (&top, &B);
+    // temp = top;
+    // while (temp)
+    // {
+    //     printf ("%d ", temp->data);
+    //     temp = temp->next; 
+    // }
+    // printf ("\n");
+    // printf ("printing stack B:\n");
+    // temp = B;
+    // while (temp)
+    // {
+    //     printf ("%d ", temp->data);
+    //     temp = temp->next; 
+    // }
+    // printf ("\n");
+    // printf ("sorting stack ..\n");
     sort_stack (&top, &B);
-    temp =top;
-    while (temp)
-    {
-         
-        printf ("%d ", temp->data);
-        temp = temp->next; 
-    }
-    printf ("\n");
-    printf ("printing stack B:\n");
-    temp =B;
-    while (temp)
-    {
-       
-        printf ("%d ", temp->data);
-        temp = temp->next; 
-    }
-    printf ("\n");
+    // temp = top;
+    // while (temp)
+    // {
+    //     printf ("%d ", temp->data);
+    //     temp = temp->next; 
+    // }
+    // printf ("\n");
+    // printf ("printing stack B:\n");
+    // temp = B;
+    // while (temp)
+    // {
+    //     printf ("%d ", temp->data);
+    //     temp = temp->next; 
+    // }
+    // printf ("\n");
     
 
-    free (arr);
+
     free_stack (&top);
     free_stack (&B);
-    free_stack (&temp_stack);
     free (top);
     free (B);
-    free (temp_stack);
     //free (pos);
 
     return (0);
