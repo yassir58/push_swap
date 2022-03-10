@@ -24,15 +24,15 @@ int check_duplicate (t_stack *top)
 void create_stack (t_stack **top, int argc, char *argv[])
 {
     t_stack *A;
-    int i;
+    int len;
 
-    i = 2;
     A = NULL;
-    A = create_node (atoi(argv[1]));
+    len = argc;
+    A = create_node (atoi(argv[--len]));
     *top = A;
-    while (i <= (argc - 1))
+    while (len-- > 1) 
     {
-        push_elm (top, create_node (atoi(argv[i++])));
+        push_elm (top, create_node (atoi(argv[len])));
     }
 
 }

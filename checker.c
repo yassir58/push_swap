@@ -1,126 +1,79 @@
 #include "push_swap.h"
+#include "get_next_line.h"
 
-int check_number (int indx, int number, int array[])
+
+void apply_p_instr (t_stack **A, t_stack **B, char *instr)
 {
-    int i = 0;
-
-    while (i < indx)
-    {
-        if (array[i] == number)
-            return (0);
-        i++;
-    }
-    return (1);
+    if (strcmp (instr, "pa\n") == 0)
+        push_element (A, B, 'a');
+    else if (strcmp (instr, "pb\n") == 0)
+        push_element (A, B, 'b');
 }
 
-int *generate_numbers (int n)
+void apply_r_instr (t_stack **A, t_stack **B, char *instr)
 {
-    int indx;
-    int num;
-    int *output;
-
-    output = (int *)malloc(sizeof(int) * n);
-    if (!output)
-        return (NULL);
-    indx = 0;
-    while (indx < n)
-    {
-        num = rand () % n  + 1;
-        if (check_number(indx, num, output))
-            output[indx++] = num;
-    }
-    return (output);
+     if (strcmp (instr, "ra\n") == 0)
+        rotate_stack (A, 'a');
+    else if (strcmp (instr, "rb\n") == 0)
+        rotate_stack (B, 'b');
+    if (strcmp (instr, "rra\n") == 0)
+        r_rotate_stack (A, 'a');
+    else if (strcmp (instr, "rrb\n") == 0)
+        r_rotate_stack (B, 'b');
+    else if (strcmp (instr, "rr\n") == 0)
+        rotate_r (A, B);
+    else if (strcmp (instr, "rrr\n") == 0)
+        r_rotate_r (A, B);
 }
 
-int num_len (int num)
+void apply_s_instr (t_stack **A, t_stack **B, char *instr)
 {
-    int i=0;
-    int rem = num;
-    while (rem)
-    {
-        rem = rem / 10;
-        i++;
-    }
-    return (i);
+    if (strcmp (instr, "sa\n") == 0)
+        swap_element (A, 'a');
+    else if (strcmp (instr, "sb\n") == 0)
+        swap_element (B, 'b');
+    else if (strcmp (instr, "ss\n") == 0)
+        swap_s (A, B);
 }
 
-char *ft_itoa (int num)
+
+
+int main (int argc, char *argv [])
 {
+    t_stack *top;
+    t_stack *B;
+    //t_stack *temp;
+
+    B = NULL;
+    top = NULL;
+    // testing
     char *str;
-    int len = 0;
-
-    len = num_len (num);
-    str =  (char *) malloc (sizeof (char) * (len + 1));
-    if (!str)
-        return (NULL);
-    str[len] = 0;
-    while (len--)
-    {
-        str[len] = (num % 10) + 48;
-        num /= 10; 
-    }
-    return (str);
-}
-
-char **get_numbers(int *output, int n)
-{
-    char **tmp;
-    int i;
+    check_for_valid_input (argc, argv);
+    create_stack (&top, argc, argv);
+    check_for_duplicate (top);
+    check_if_sorted (top);
     
-
-    tmp = (char **)malloc(sizeof(char *) * (n + 1));
-    if (!tmp)
-        return (NULL);
-    tmp[n] = NULL; 
-    i = 0;
-    while (i < n)
+    while ((str = get_next_line (1)))
     {
-        tmp[i] = ft_itoa(output[i]);
-        i++;
-    }
-    return (tmp);
-}
-
-
-void free_elements (char **argm, int *numbers)
-{
-    int i = 0;
-
-    while (argm[i])
-    {
-        free (argm[i]);
-        i++;
-    }
-    free (argm);
-    free (numbers);
-}
-
-int main (int argc, char *argv[])
-{
-    char **output;
-    int *numbers;
-    int i;
-    int n;
-
-    i = 0;
-    if (argc <= 1)
-    {
-        printf ("Error!\n");
-        return (1);
-    }
-    n = atoi (argv[argc - 1]); 
-    numbers = generate_numbers(n);
-    output = get_numbers(numbers, n);
-    while (i < n)
-    {
+        //valid_instructions (str);
+        if (str[0] == 's')
+            apply_p_instr (&top, &B, str);
+        else if (str[0] == 'p')
+            apply_p_instr (&top, &B, str);
+        else if (str[0] == 'r')
+            apply_r_instr (&top, &B, str);
+        else if (str[0] == '\n' || str[0] == '\0')
+            break;
         
-        printf("%s", output[i]);
-        if (i < (n - 1))
-            printf(" ");
-        i++;
+        free (str);
     }
-    free_elements (output, numbers);
+    print_stack (top);
+    check_if_sorted (top);
+    free_stack (&top);
+    free_stack (&B);
+    free (top);
+    free (B);
+   
+
     return (0);
 }
-
-

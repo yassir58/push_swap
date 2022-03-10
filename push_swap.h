@@ -87,24 +87,29 @@ int *check_position (t_stack **stack, int elm_indx);
 void smart_rotate (pos *elm_pos, t_stack **A, t_stack **B);
 void r_spec_rotate (t_stack **A, t_stack **B, int size,  int rotate);
 void spec_rotate (t_stack **stack, int size, int rotate, int c);
-void r_spec_rotate (t_stack **A, t_stack **B, int size,  int rotate);
 pos *get_max_pos (t_stack **A, t_stack **B,  int elm);
 void move_non_lis_to_B (t_stack **A, t_stack **B);
 void mark_elm (t_stack **A, int elm);
 int last_check (t_stack **A, int elm);
 pos *find_best (t_stack **A, t_stack **B, int elm);
 pos* chose_best_elm (pos *elm_pos, pos *min);
+void sim_rotate (pos *elm, t_stack **A , t_stack **B);
+void sim_pos ( pos* elm, t_stack **A , t_stack **B);
+void smart_rotate (pos *elm_pos, t_stack **A, t_stack **B);
+void diff_rotate (pos *elm, t_stack **A , t_stack **B);
 
 // checker
-int check_number (int indx, int number, int array[]);
-int *generate_100 (void);
-int num_len (int num);
-char *ft_itoa (int num);
-void get_100 (char *argv[]);
+int found_elm (char *instr[], char *ins);
+int check_valid_instr(char  *argv);
+void apply_p_instr (t_stack **A, t_stack **B, char *instr);
+void apply_r_instr (t_stack **A, t_stack **B, char *instr);
+void apply_s_instr (t_stack **A, t_stack **B, char *instr);
+void valid_instructions (char *argv);
 
 // testing 
 void print_arr (int *arr, int size);
 int *test_len_arr (int *arr, int size, int **indx_arr);
+void print_stack (t_stack *stack);
 
 
 #endif

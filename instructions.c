@@ -16,9 +16,9 @@ void swap_element (t_stack **top, char c)
         elm->data = next->data;
         next->data = tmp;
         if (c == 'a')
-            write (1, "sa\n", 4);
+            write (1, "sa\n", 3);
         else if (c == 'b')
-            write (1, "sb\n", 4);
+            write (1, "sb\n", 3);
     } 
 }
 
@@ -27,7 +27,7 @@ void swap_s (t_stack **A, t_stack **B)
 {
     swap_element (A, '0');
     swap_element (B, '0');
-    write (1, "ss\n",4);
+    write (1, "ss\n",3);
 }
 
 void push_element (t_stack **A, t_stack **B,char c)
@@ -40,13 +40,13 @@ void push_element (t_stack **A, t_stack **B,char c)
       {
           push_to = A;
           tmp_stack = B;
-          write (1, "pa\n",4);
+          write (1, "pa\n",3);
       }
       else 
       {
           push_to = B;
           tmp_stack = A;
-          write (1, "pb\n",4);
+          write (1, "pb\n",3);
       }
     if (*tmp_stack)
     {
@@ -72,8 +72,8 @@ void rotate_stack (t_stack **stack, char c)
         temp->next = top;
         temp->next->next = NULL;
         if (c == 'a')
-            write (1, "ra\n", 4);
+            write (1, "ra\n", 3);
         else if (c == 'b')
-            write (1, "rb\n",4);
+            write (1, "rb\n",3);
     }
 }

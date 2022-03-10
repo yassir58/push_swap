@@ -4,16 +4,19 @@
 
 
 
-void print_arr (int *arr, int size)
+void print_stack (t_stack *stack)
 {
-    int i;
-    printf ("printing arr... \n");
-    i = 0;
-    while (i < size)
-        printf ("%d ", arr[i++]);
-    printf ("\n");
-}
+    t_stack *tmp;
 
+    tmp = stack;
+    printf ("\n____________________________________________________\n");
+    while (tmp)
+    {
+        printf ("%d ", tmp->data);
+        tmp = tmp->next;
+    }
+    printf ("\n____________________________________________________\n");
+}
 
 int *test_len_arr (int *arr, int size, int **indx_arr)
 {

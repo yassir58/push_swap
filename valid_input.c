@@ -22,15 +22,3 @@ void check_for_duplicate (t_stack *stack)
         exit (0);
     }
 }
-
-
-// testing
-void print_stack (t_stack *top)
-{
-    while (top)
-    {
-        printf ("%d ", top->data);
-        top = top->next;
-    }
-    printf ("\n");
-}

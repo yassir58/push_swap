@@ -6,7 +6,7 @@ void rotate_r (t_stack **A, t_stack **B)
     if (*A && *B)
     rotate_stack (A, '0');
     rotate_stack (B, '0');
-    write (1, "rr\n",4);
+    write (1, "rr\n",3);
 }
 
 void r_rotate_stack (t_stack **stack, char c)
@@ -25,9 +25,9 @@ void r_rotate_stack (t_stack **stack, char c)
         push_elm (stack, temp->next);
         temp->next = NULL;
         if (c == 'a')
-            write (1, "rra\n", 5);
+            write (1, "rra\n", 4);
         else if (c == 'b')
-            write (1, "rrb\n", 5);
+            write (1, "rrb\n", 4);
     }
 }
 
@@ -39,6 +39,6 @@ void r_rotate_r (t_stack **A, t_stack **B)
     {
         r_rotate_stack (A, '0');
         r_rotate_stack (B, '0');
-        write (1, "rrr\n",5);
+        write (1, "rrr\n",4);
     }
 }

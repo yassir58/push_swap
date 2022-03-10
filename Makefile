@@ -14,7 +14,7 @@ $(NAME):$(OBJS)
 all:$(NAME) checker
 
 checker:
-	$(CC)  $(CFLAGS) checker.c -o checker
+	$(CC)  $(CFLAGS) checker.c checker_utils.c get_next_line.c get_next_line_utils.c instructions.c instructions_2.c utils.c utils_2.c utils_3.c valid_input.c  testing.c  lis.c -o checker 
 fclean: clean
 	rm -rf $(NAME) checker
 clean:
