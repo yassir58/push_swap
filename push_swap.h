@@ -92,6 +92,8 @@ pos *get_max_pos (t_stack **A, t_stack **B,  int elm);
 void move_non_lis_to_B (t_stack **A, t_stack **B);
 void mark_elm (t_stack **A, int elm);
 int last_check (t_stack **A, int elm);
+pos *find_best (t_stack **A, t_stack **B, int elm);
+pos* chose_best_elm (pos *elm_pos, pos *min);
 
 // checker
 int check_number (int indx, int number, int array[]);

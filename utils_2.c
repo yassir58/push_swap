@@ -25,12 +25,9 @@ void create_stack (t_stack **top, int argc, char *argv[])
 {
     t_stack *A;
     int i;
-    int indx;
 
     i = 2;
-    indx = 0;
     A = NULL;
-
     A = create_node (atoi(argv[1]));
     *top = A;
     while (i <= (argc - 1))
