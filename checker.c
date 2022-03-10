@@ -53,7 +53,7 @@ int main (int argc, char *argv [])
     check_for_duplicate (top);
     check_if_sorted (top);
     
-    while ((str = get_next_line (1)))
+    while ((str = get_next_line (0)))
     {
         //valid_instructions (str);
         if (str[0] == 's')
@@ -64,16 +64,15 @@ int main (int argc, char *argv [])
             apply_r_instr (&top, &B, str);
         else if (str[0] == '\n' || str[0] == '\0')
             break;
-        
         free (str);
     }
+    write (1, "OK\n", 3);
     print_stack (top);
     check_if_sorted (top);
+    write (1, "KO",3);
     free_stack (&top);
     free_stack (&B);
     free (top);
     free (B);
-   
-
     return (0);
 }

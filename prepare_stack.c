@@ -38,7 +38,8 @@ void move_non_lis (t_stack **A, t_stack **B)
             push_element (A, B, 'b');
             len--;
         }
-        rotate_stack (A, 'a');
+        else
+            rotate_stack (A, 'a');
         tmp_a = *A;
     }
 }
