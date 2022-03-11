@@ -34,12 +34,10 @@ void rotate_r (t_stack **A, t_stack **B);
 void r_rotate_stack (t_stack **stack, char c);
 void r_rotate_r (t_stack **A, t_stack **B);
 void sort_3 (t_stack **A);
-void sort_test (t_stack **A, t_stack **B);
-void set_element (t_stack **top, int data);
 t_stack *create_node (int data);
 int check_duplicate (t_stack *top);
-void create_stack (t_stack **top, int argc, char *argv[]);
-int check_if_sorted (t_stack *stack);
+void create_stack (t_stack **top, char *argv[]);
+int check_if_sorted (t_stack *stack, t_stack *stack_b);
 int stack_length (t_stack *stack);
 int stack_max (t_stack *stack);
 void position_elm_top (t_stack **stack, int elm_indx);
@@ -52,19 +50,22 @@ int valid_number (char *str);
 int valid_input (char *argv []);
 void check_for_valid_input (int argc, char *argv[]);
 void check_for_duplicate (t_stack *stack);
-void print_stack (t_stack *top);void sort_5 (t_stack **A, t_stack **B);
-void sort_with_3 (t_stack **A, t_stack **B);
+void print_stack (t_stack *top);
+void sort_5 (t_stack **A, t_stack **B);
 pos *pair_elm (t_stack **A, t_stack **B, int B_elm);
+
+
 int *lis_len(int *stack, int siz/*, int *len*/);
 int *convert_to_array(t_stack **stack, int size);
 int *init_arr (int *arr,int c, int n);
-int max_elm (int a, int b);
+int max_elm (int a, int b); /*  -------------  */
 int arr_max (int *arr, int size);
-void find_lis (t_stack **top);
+
+void find_lis (t_stack **top); /*  -------------  */
 int *construct_lis (int *arr, int *indx_arr, int *len_arr, int size, int max);
 int *find_indx_arr (int size);
 int *find_len_arr (int *arr, int size);
-void mark_elements (int pos, t_stack **top);
+void mark_elements (int pos, t_stack **top); /*  -------------  */
 void get_elm (t_stack **top, int indx);
 int get_indx (int pos, t_stack **top);
 void free_stack (t_stack **stack);
@@ -72,27 +73,27 @@ void extract_lis ( t_stack **A);
 int in_lis (int *lis, int elm, int size);
 int get_pos (t_stack **top);
 t_stack *copy_stack (int *arr, int size);
-void  prepare_stack(t_stack **stack);
+void  prepare_stack(t_stack **stack); /*  -------------  */
 void extract_elm (t_stack **A, int *lis, int size);
-int *init_lis (int *lis , int  size, int c);
-void move_non_lis (t_stack **A, t_stack **B);
-int count_len (t_stack **top);
-void sort_stack (t_stack **A, t_stack **B);
-pos *init_pos (t_stack **A, t_stack **B);
+// int *init_lis (int *lis , int  size, int c);
+void move_non_lis (t_stack **A, t_stack **B); /*  -------------  */
+int count_len (t_stack **top); /*  -------------  */
+void sort_stack (t_stack **A, t_stack **B); /*  -------------  */
+pos *init_pos (t_stack **A, t_stack **B); /*  -------------  */
 pos *update_pos (pos *elm_pos, int *temp_pos_a, int *temp_pos_b);
 pos *get_elm_position (t_stack **A, t_stack **B,int next, int elm);
-pos *calculate_best_elm (t_stack **A, t_stack **B);
+pos *calculate_best_elm (t_stack **A, t_stack **B); /*  -------------  */
 int *get_non_lis (int *lis, int size, t_stack **A, int *non_lis_size);
 int *check_position (t_stack **stack, int elm_indx);
-void smart_rotate (pos *elm_pos, t_stack **A, t_stack **B);
-void r_spec_rotate (t_stack **A, t_stack **B, int size,  int rotate);
-void spec_rotate (t_stack **stack, int size, int rotate, int c);
+void smart_rotate (pos *elm_pos, t_stack **A, t_stack **B); /*  -------------  */
+void r_spec_rotate (t_stack **A, t_stack **B, int size,  int rotate); /*  -------------  */
+void spec_rotate (t_stack **stack, int size, int rotate, int c); /*  -------------  */
 pos *get_max_pos (t_stack **A, t_stack **B,  int elm);
 void move_non_lis_to_B (t_stack **A, t_stack **B);
 void mark_elm (t_stack **A, int elm);
 int last_check (t_stack **A, int elm);
-pos *find_best (t_stack **A, t_stack **B, int elm);
-pos* chose_best_elm (pos *elm_pos, pos *min);
+pos *find_best (t_stack **A, t_stack **B, int elm); /*  -------------  */
+pos* chose_best_elm (pos *elm_pos, pos *min); /*  -------------  */
 void sim_rotate (pos *elm, t_stack **A , t_stack **B);
 void sim_pos ( pos* elm, t_stack **A , t_stack **B);
 void smart_rotate (pos *elm_pos, t_stack **A, t_stack **B);
@@ -104,7 +105,18 @@ int check_valid_instr(char  *argv);
 void apply_p_instr (t_stack **A, t_stack **B, char *instr);
 void apply_r_instr (t_stack **A, t_stack **B, char *instr);
 void apply_s_instr (t_stack **A, t_stack **B, char *instr);
-void valid_instructions (char *argv);
+void valid_instructions (char *arg, t_stack *A, t_stack *B);
+void free_all (t_stack *A, t_stack *B);
+int check_if_sorted_checker (t_stack *stack);
+ 
+char	**ft_split(char const *s, char c);
+char **join_vector (char **dst_vector, char **src_vector);
+char **push_str (char **dst_vector, char *str);
+char **process_args (int argc, char *argv[]);
+void	free_tab(char **tab);
+int	ft_atoi(const char *str);
+char	*ft_strdup(const char *s1);
+int vector_size (char **vector);
 
 // testing 
 void print_arr (int *arr, int size);

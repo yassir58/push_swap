@@ -21,38 +21,17 @@ int check_duplicate (t_stack *top)
     return (1);
 }
 
-void create_stack (t_stack **top, int argc, char *argv[])
+void create_stack (t_stack **top, char *argv[])
 {
     t_stack *A;
     int len;
 
     A = NULL;
-    len = argc;
+    len = vector_size (argv);
     A = create_node (atoi(argv[--len]));
     *top = A;
-    while (len-- > 1) 
-    {
+    while (len--)
         push_elm (top, create_node (atoi(argv[len])));
-    }
-
-}
-
-int check_if_sorted (t_stack *stack)
-{
-    int checker;
-    t_stack *temp;
-    
-    checker = 0;
-    temp = stack;
-    while (temp != NULL)
-    {
-        if (temp->data < checker)
-            return (0);
-        checker = temp->data;
-        temp = temp->next;
-    }
-    write (1, "stack is sorted\n", 17);
-    exit (0);
 }
 
 int stack_length (t_stack *stack)
@@ -77,7 +56,6 @@ int stack_max (t_stack *stack)
 
     temp = stack;
     max = 0;
-
     while (temp != NULL)
     {
         if (temp->data > max)

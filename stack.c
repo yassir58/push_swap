@@ -3,47 +3,30 @@
 
 
 
-void set_element (t_stack **top, int data)
-{
-    t_stack *temp;
-    if (*top == NULL)
-    {
-        *top = malloc (sizeof (t_stack));
-    }
-    temp = *top;
-    temp->data = data;
-    temp->next = NULL;
-}
-
-
-
-
-
 int main (int argc, char *argv [])
 {
     t_stack *top;
     t_stack *B;
+    char **vector;
 
     B = NULL;
     top = NULL;
+    vector = NULL;
+    vector = process_args (argc, argv);
     // testing
-
-    check_for_valid_input (argc, argv);
-    create_stack (&top, argc, argv);
+    if (!vector)
+        return (1);
+    check_for_valid_input (vector_size (vector), vector);
+    create_stack (&top, vector);
     check_for_duplicate (top);
-    check_if_sorted (top);
+    check_if_sorted (top, B);
     prepare_stack (&top);
     move_non_lis (&top, &B);
-    sort_stack (&top, &B);
-    // check_if_sorted (top);
-
-
-    
+    sort_stack (&top, &B); 
     free_stack (&top);
     free_stack (&B);
     free (top);
     free (B);
-    //free (pos);
-
+    free_tab (vector);
     return (0);
 }

@@ -1,16 +1,6 @@
 #include "push_swap.h"
 
 
-
-//// get the best element to be pushed to stack b
-/*
-int move_non_lis ()
-{
-
-}*/
-
-
-
 int *best_elm_to_extract (t_stack **A)
 {
     int *temp;

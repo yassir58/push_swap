@@ -44,6 +44,7 @@ void move_non_lis (t_stack **A, t_stack **B)
     }
 }
 
+/*
 pos *best_position (int *a_pos, int *b_pos, pos *elm_pos)
 {
     if ((a_pos[0] + b_pos[0]) > (elm_pos->a_pos + elm_pos->b_pos))
@@ -56,4 +57,4 @@ pos *best_position (int *a_pos, int *b_pos, pos *elm_pos)
     free (a_pos);
     free (b_pos);
     return (elm_pos);
-}
+}*/

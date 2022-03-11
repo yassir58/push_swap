@@ -41,7 +41,7 @@ int valid_input (char *argv [])
 {
    int i;
    
-   i = 1;
+   i = 0;
    while (argv[i] != NULL)
    {
        if (!valid_number (argv[i]))

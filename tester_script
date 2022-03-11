@@ -10,9 +10,9 @@ sleep 1
 echo "testing with 3 random numbers"
 printf "${NC}\n"
 sleep 1
-./push_swap $(./checker 3)
+./push_swap $(./generator 3)
 sleep 2
-VAE=$(./push_swap $(./checker 3) | wc -l)
+VAE=$(./push_swap $(./generator 3) | wc -l)
 
 if [[ $VAE -ge 3 ]]; then
 printf "${RED}"
@@ -25,9 +25,9 @@ sleep 3
 printf "${YELLOW} testing with 5 random numbers\n"
 printf "${NC}"
 sleep 1
-./push_swap $(./checker 5)
+./push_swap $(./generator 5)
 sleep 2
-VAE=$(./push_swap $(./checker 5) | wc -l)
+VAE=$(./push_swap $(./generator 5) | wc -l)
 
 if [[ $VAE -ge 12 ]]; then
 printf "${RED}"
@@ -40,11 +40,11 @@ sleep 3
 echo "testing with 100 random number"
 printf "${NC}"
 sleep 1
-./push_swap $(./checker 100)
+./push_swap $(./generator 100)
 sleep 2
-VAE=$(./push_swap $(./checker 100) | wc -l)
+VAE=$(./push_swap $(./generator 100) | wc -l)
 
-if [[ $VAE -ge 500 ]]; then
+if [[ $VAE -ge 700 ]]; then
 printf "${RED}"
 printf "test failed ,${VAE} instructions!\n"
 else
@@ -55,11 +55,11 @@ sleep 3
 printf "${YELLOW} testing with 500 random number\n"
 printf "${NC}"
 sleep 1
-./push_swap $(./checker 500)
+./push_swap $(./generator 500)
 sleep 2
-VAE=$(./push_swap $(./checker 500) | wc -l)
+VAE=$(./push_swap $(./generator 500) | wc -l)
 
-if [[ $VAE -ge 700 ]]; then
+if [[ $VAE -ge 5600 ]]; then
 printf "${RED}"
 printf "test failed ,${VAE} instructions!\n"
 else

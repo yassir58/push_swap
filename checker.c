@@ -42,20 +42,22 @@ int main (int argc, char *argv [])
 {
     t_stack *top;
     t_stack *B;
-    //t_stack *temp;
+    char *str;
+    char **vector;
 
     B = NULL;
     top = NULL;
-    // testing
-    char *str;
-    check_for_valid_input (argc, argv);
-    create_stack (&top, argc, argv);
+    vector = NULL;
+    vector = process_args (argc, argv);
+    if (!vector)
+        return (1);
+    check_for_valid_input (vector_size(vector), vector);
+    create_stack (&top, vector);
     check_for_duplicate (top);
-    check_if_sorted (top);
-    
+    check_if_sorted (top, B);
     while ((str = get_next_line (0)))
     {
-        //valid_instructions (str);
+        valid_instructions (str, top, B);
         if (str[0] == 's')
             apply_p_instr (&top, &B, str);
         else if (str[0] == 'p')
@@ -66,13 +68,9 @@ int main (int argc, char *argv [])
             break;
         free (str);
     }
-    write (1, "OK\n", 3);
-    print_stack (top);
-    check_if_sorted (top);
-    write (1, "KO",3);
-    free_stack (&top);
-    free_stack (&B);
-    free (top);
-    free (B);
+    if (!check_if_sorted (top, B))
+        write (1, "KO",3);
+    free_all (top, B);
+    free_tab (vector);
     return (0);
 }

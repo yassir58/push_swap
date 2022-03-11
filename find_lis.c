@@ -25,7 +25,6 @@ void find_lis (t_stack **top)
         tmp_j = *top;
         while (j < i)
         {
-            
             if (tmp_i->data > tmp_j->data && (tmp_j->len + 1) > tmp_i->len)
             {
                 tmp_i->len =  tmp_j->len  + 1;
