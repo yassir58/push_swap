@@ -33,7 +33,7 @@ void rotate_stack (t_stack **stack, char c);
 void rotate_r (t_stack **A, t_stack **B);
 void r_rotate_stack (t_stack **stack, char c);
 void r_rotate_r (t_stack **A, t_stack **B);
-void sort_3 (t_stack **A);
+void sort_3 (t_stack **a_top);
 t_stack *create_node (int data);
 int check_duplicate (t_stack *top);
 void create_stack (t_stack **top, char *argv[]);

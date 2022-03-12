@@ -44,11 +44,6 @@ void	r_spec_rotate(t_stack **A, t_stack **B, int size, int rotate)
 
 void	smart_rotate(pos *elm_pos, t_stack **A, t_stack **B)
 {
-	int	rr_count;
-	int	r_count ;
-
-	rr_count = 0;
-	r_count = 0;
 	if (elm_pos->a_pos == elm_pos->b_pos
 		&& elm_pos->a_rotate == elm_pos->b_rotate)
 		r_spec_rotate (A, B, elm_pos->a_pos, elm_pos->a_rotate);
