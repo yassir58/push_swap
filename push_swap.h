@@ -37,7 +37,7 @@ void sort_3 (t_stack **A);
 t_stack *create_node (int data);
 int check_duplicate (t_stack *top);
 void create_stack (t_stack **top, char *argv[]);
-int check_if_sorted (t_stack *stack, t_stack *stack_b);
+int check_if_sorted (t_stack *stack);
 int stack_length (t_stack *stack);
 int stack_max (t_stack *stack);
 void position_elm_top (t_stack **stack, int elm_indx);
@@ -99,17 +99,17 @@ void sim_pos ( pos* elm, t_stack **A , t_stack **B);
 void smart_rotate (pos *elm_pos, t_stack **A, t_stack **B);
 void diff_rotate (pos *elm, t_stack **A , t_stack **B);
 pos* set_last_pos (pos *elm_pos, t_stack **B, int elm);
+void set_indx_len(t_stack **node, int len, int indx);
 
 // checker
 int found_elm (char *instr[], char *ins);
 int check_valid_instr(char  *argv);
-void apply_p_instr (t_stack **A, t_stack **B, char *instr);
-void apply_r_instr (t_stack **A, t_stack **B, char *instr);
-void apply_s_instr (t_stack **A, t_stack **B, char *instr);
+int apply_p_instr (t_stack **A, t_stack **B, char *instr);
+int apply_r_instr (t_stack **A, t_stack **B, char *instr);
+int apply_s_instr (t_stack **A, t_stack **B, char *instr);
 void valid_instructions (char *arg, t_stack *A, t_stack *B);
 void free_all (t_stack *A, t_stack *B);
-int check_if_sorted_checker (t_stack *stack);
- 
+int check_function (t_stack *a_top, t_stack *b_top);
 char	**ft_split(char const *s, char c);
 char **join_vector (char **dst_vector, char **src_vector);
 char **push_str (char **dst_vector, char *str);
@@ -118,6 +118,7 @@ void	free_tab(char **tab);
 int	ft_atoi(const char *str);
 char	*ft_strdup(const char *s1);
 int vector_size (char **vector);
+int	ft_strcmp(const char *str1, const char *str2);
 
 // testing 
 void print_arr (int *arr, int size);

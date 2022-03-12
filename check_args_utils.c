@@ -1,13 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_args_utils.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yelatman <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/12 15:29:39 by yelatman          #+#    #+#             */
+/*   Updated: 2022/03/12 15:31:00 by yelatman         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-size_t ft_strlen (const char *str)
+size_t	ft_strlen(const char *str)
 {
-    size_t i;
+	size_t	i;
 
-    i = 0;
-    while (str[i])
-        i++;
-    return (i);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }
 
 static int	count_words(char const *str, char c)

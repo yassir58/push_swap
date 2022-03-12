@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yelatman <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/12 13:09:06 by yelatman          #+#    #+#             */
+/*   Updated: 2022/03/12 13:10:19 by yelatman         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void	push_elm (t_stack **top, t_stack *node)
+void	push_elm(t_stack **top, t_stack *node)
 {
-	node->next= *top;
+	node->next = *top;
 	*top = node;
 }
 
-t_stack	*pop_elm (t_stack **top)
+t_stack	*pop_elm(t_stack **top)
 {
 	t_stack	*temp;
 
@@ -15,14 +27,14 @@ t_stack	*pop_elm (t_stack **top)
 	return (temp);
 }
 
-int	is_digit (char c)
+int	is_digit(char c)
 {
 	if ((c >= 48 && c <= 57) || c == 45)
 		return (1);
 	return (0);
 }
 
-int	valid_number (char *str)
+int	valid_number(char *str)
 {
 	int	i ;
 
@@ -36,7 +48,7 @@ int	valid_number (char *str)
 	return (1);
 }
 
-int	valid_input (char *argv [])
+int	valid_input(char *argv [])
 {
 	int	i;
 

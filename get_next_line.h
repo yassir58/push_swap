@@ -6,7 +6,7 @@
 /*   By: yelatman <yelatman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 12:58:16 by yelatman          #+#    #+#             */
-/*   Updated: 2022/03/10 14:36:51 by yelatman         ###   ########.fr       */
+/*   Updated: 2022/03/12 14:55:45 by yelatman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-#define BUFFER_SIZE 1
+
+# define BUFFER_SIZE 1
+
 char	*get_next_line(int fd);
 size_t	ft_strlen(char const *str);
 char	*try_get_line(char *str);
