@@ -1,7 +1,5 @@
 #include "push_swap.h"
 
-
-
 void spec_rotate (t_stack **stack, int size, int rotate, int c)
 {
    int i;
@@ -91,8 +89,8 @@ pos* set_last_pos (pos *elm_pos, t_stack **B, int elm)
 
     b_pos = check_position (B, get_elm_indx(B, elm));
     elm_pos->a_pos = 0;
-    elm_pos->a_pos = 0;
-    elm_pos->a_rotate = b_pos[0];
+    elm_pos->b_pos = b_pos[0];
+    elm_pos->a_rotate = 0;
     elm_pos->b_rotate = b_pos[1];
 
     free (b_pos);

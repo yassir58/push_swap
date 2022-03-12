@@ -1,10 +1,6 @@
 #include "push_swap.h"
 
 
-
-
-
-
 void check_for_valid_input (int argc, char *argv[])
 {
     if (argc == 1 || !valid_input (argv))

@@ -25,18 +25,15 @@ int *check_position (t_stack **stack, int elm_indx)
     int *elm_info;
     int mid_indx;
 
-
     elm_info = malloc (sizeof (int) * 2);
     mid_indx = stack_length (*stack) / 2;
     if (elm_indx <= mid_indx)
     {
-        //rotate
         elm_info[0] = elm_indx;
         elm_info[1] = 0;
     }
     else
     {
-        //reverse rotate
         elm_info[0] = stack_length (*stack) - elm_indx;
         elm_info[1] = 1;
     }
@@ -82,17 +79,4 @@ int get_elm_indx (t_stack **stack, int elm)
         indx++;
     }
     return (0);
-}
-
-t_stack *create_node (int data)
-{
-    t_stack *node;
-
-    node = malloc (sizeof (t_stack));
-    node->data = data;
-    node->lis = 0;
-    node->indx = -1;
-    node->len = 1;
-    node->next = NULL;
-    return (node);
 }

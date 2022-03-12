@@ -98,6 +98,7 @@ void sim_rotate (pos *elm, t_stack **A , t_stack **B);
 void sim_pos ( pos* elm, t_stack **A , t_stack **B);
 void smart_rotate (pos *elm_pos, t_stack **A, t_stack **B);
 void diff_rotate (pos *elm, t_stack **A , t_stack **B);
+pos* set_last_pos (pos *elm_pos, t_stack **B, int elm);
 
 // checker
 int found_elm (char *instr[], char *ins);
