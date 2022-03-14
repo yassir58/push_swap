@@ -34,14 +34,6 @@ t_pos	*find_best(t_stack **A, t_stack **B, int elm)
 
 t_pos	*chose_best_elm(t_pos *elm_pos, t_pos *min)
 {
-	if (elm_pos->a_rotate == elm_pos->b_rotate)
-	{
-		if (max_elm(elm_pos->a_pos, elm_pos->b_pos) < (min->a_pos + min->b_pos))
-		{
-			free (min);
-			return (elm_pos);
-		}
-	}
 	if ((elm_pos->a_pos + elm_pos->b_pos) < (min->a_pos + min->b_pos))
 	{
 		free (min);
