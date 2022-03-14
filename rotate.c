@@ -6,7 +6,7 @@
 /*   By: yelatman <yelatman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 15:02:32 by yelatman          #+#    #+#             */
-/*   Updated: 2022/03/12 15:19:45 by yelatman         ###   ########.fr       */
+/*   Updated: 2022/03/14 12:50:56 by yelatman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	r_spec_rotate(t_stack **A, t_stack **B, int size, int rotate)
 	}
 }
 
-void	smart_rotate(pos *elm_pos, t_stack **A, t_stack **B)
+void	smart_rotate(t_pos *elm_pos, t_stack **A, t_stack **B)
 {
 	if (elm_pos->a_pos == elm_pos->b_pos
 		&& elm_pos->a_rotate == elm_pos->b_rotate)
@@ -75,7 +75,7 @@ int	last_check(t_stack **A, int elm)
 	return (0);
 }
 
-pos	*set_last_pos(pos *elm_pos, t_stack **B, int elm)
+t_pos	*set_last_pos(t_pos *elm_pos, t_stack **B, int elm)
 {
 	int	*b_pos;
 

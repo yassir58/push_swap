@@ -6,7 +6,7 @@
 /*   By: yelatman <yelatman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 13:27:16 by yelatman          #+#    #+#             */
-/*   Updated: 2022/03/12 19:42:29 by yelatman         ###   ########.fr       */
+/*   Updated: 2022/03/14 13:33:11 by yelatman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ void	set_indx_len(t_stack **node, int len, int indx)
 	tmp->indx = indx;
 }
 
-void free_all (t_stack *A, t_stack *B)
+void	free_all(t_stack *A, t_stack *B)
 {
-    free_stack (&A);
-    free_stack (&B);
-    free (A);
-    free (B);
+	free_stack (&A);
+	free_stack (&B);
+	free (A);
+	free (B);
 }

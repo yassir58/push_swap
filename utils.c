@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yelatman <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yelatman <yelatman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 13:09:06 by yelatman          #+#    #+#             */
-/*   Updated: 2022/03/12 13:10:19 by yelatman         ###   ########.fr       */
+/*   Updated: 2022/03/14 12:40:19 by yelatman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_stack	*pop_elm(t_stack **top)
 	return (temp);
 }
 
-int	is_digit(char c)
+int	ft_isdigit(char c)
 {
 	if ((c >= 48 && c <= 57) || c == 45)
 		return (1);
@@ -41,7 +41,7 @@ int	valid_number(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (!is_digit(str[i]))
+		if (!ft_isdigit(str[i]))
 			return (0);
 		i++;
 	}

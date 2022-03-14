@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yelatman <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yelatman <yelatman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 12:56:35 by yelatman          #+#    #+#             */
-/*   Updated: 2022/03/12 14:52:50 by yelatman         ###   ########.fr       */
+/*   Updated: 2022/03/14 13:56:32 by yelatman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-pos *find_best(t_stack **A, t_stack **B, int elm)
+t_pos	*find_best(t_stack **A, t_stack **B, int elm)
 {
-	t_stack *top;
-	pos *elm_pos;
+	t_stack	*top;
+	t_pos	*elm_pos;
 
 	top = *A;
 	elm_pos = init_pos(A, B);
@@ -26,13 +26,13 @@ pos *find_best(t_stack **A, t_stack **B, int elm)
 	while (top)
 	{
 		if (elm > top->data && elm < top->next->data)
-			return (update_pos(elm_pos, A, B, top->next->data, elm));
+			return (update_pos(elm_pos, A, B, get_arr(top->next->data, elm)));
 		top = top->next;
 	}
 	return (elm_pos);
 }
 
-pos *chose_best_elm(pos *elm_pos, pos *min)
+t_pos	*chose_best_elm(t_pos *elm_pos, t_pos *min)
 {
 	if (elm_pos->a_rotate == elm_pos->b_rotate)
 	{
@@ -50,11 +50,11 @@ pos *chose_best_elm(pos *elm_pos, pos *min)
 	return (update_elm_pos (elm_pos, min));
 }
 
-pos *calculate_best_elm(t_stack **A, t_stack **B)
+t_pos	*calculate_best_elm(t_stack **A, t_stack **B)
 {
-	t_stack *temp_b;
-	pos *tmp;
-	pos *min;
+	t_stack	*temp_b;
+	t_pos	*tmp;
+	t_pos	*min;
 
 	temp_b = *B;
 	tmp = NULL;
@@ -68,10 +68,10 @@ pos *calculate_best_elm(t_stack **A, t_stack **B)
 	return (min);
 }
 
-void sort_stack(t_stack **A, t_stack **B)
+void	sort_stack(t_stack **A, t_stack **B)
 {
-	int size;
-	pos *pos;
+	int		size;
+	t_pos	*pos;
 
 	size = stack_length(*B);
 	while (size)

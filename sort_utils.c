@@ -6,17 +6,17 @@
 /*   By: yelatman <yelatman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 14:57:23 by yelatman          #+#    #+#             */
-/*   Updated: 2022/03/12 15:22:09 by yelatman         ###   ########.fr       */
+/*   Updated: 2022/03/14 14:00:51 by yelatman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-pos	*init_pos(t_stack **A, t_stack **B)
+t_pos	*init_pos(t_stack **A, t_stack **B)
 {
-	pos	*elm_pos;
+	t_pos	*elm_pos;
 
-	elm_pos = malloc (sizeof (pos));
+	elm_pos = malloc (sizeof (t_pos));
 	elm_pos->a_pos = stack_length (*A);
 	elm_pos->b_pos = stack_length (*B);
 	elm_pos->a_rotate = 0;
@@ -24,22 +24,24 @@ pos	*init_pos(t_stack **A, t_stack **B)
 	return (elm_pos);
 }
 
-pos	*update_pos(pos *elm_pos, t_stack **A, t_stack **B, int a_elm, int b_elm)
+t_pos	*update_pos(t_pos *elm_pos, t_stack **A, t_stack **B, int *elm)
 {
-	int *pos_a;
-	int *pos_b;
-	pos_a = check_position(A, get_elm_indx(A, a_elm));
-	pos_b = check_position(B, get_elm_indx(B, b_elm));
+	int	*pos_a;
+	int	*pos_b;
+
+	pos_a = check_position(A, get_elm_indx(A, elm[0]));
+	pos_b = check_position(B, get_elm_indx(B, elm[1]));
 	elm_pos->a_pos = pos_a[0];
 	elm_pos->b_pos = pos_b[0];
 	elm_pos->a_rotate = pos_a[1];
 	elm_pos->b_rotate = pos_b[1];
 	free (pos_a);
 	free (pos_b);
+	free (elm);
 	return (elm_pos);
 }
 
-pos	*get_max_pos(t_stack **A, t_stack **B, int elm, pos *elm_pos)
+t_pos	*get_max_pos(t_stack **A, t_stack **B, int elm, t_pos *elm_pos)
 {
 	int	*a_pos;
 	int	*b_pos;
@@ -55,7 +57,7 @@ pos	*get_max_pos(t_stack **A, t_stack **B, int elm, pos *elm_pos)
 	return (elm_pos);
 }
 
-void	diff_rotate(pos *elm_pos, t_stack **A, t_stack **B)
+void	diff_rotate(t_pos *elm_pos, t_stack **A, t_stack **B)
 {
 	int	r_count;
 	int	rr_count;

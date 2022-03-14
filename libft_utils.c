@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yelatman <yelatman@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/14 13:32:33 by yelatman          #+#    #+#             */
+/*   Updated: 2022/03/14 14:50:10 by yelatman         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-/*
 int	ft_atoi(const char *str)
 {
 	int			i;
@@ -25,7 +36,7 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (res * sign);
-}*/
+}
 
 char	*ft_strdup(const char *s1)
 {
@@ -51,8 +62,6 @@ char	*ft_strdup(const char *s1)
 	return (0);
 }
 
-
-
 int	ft_strcmp(const char *str1, const char *str2)
 {
 	size_t			i;
@@ -74,4 +83,16 @@ int	ft_strcmp(const char *str1, const char *str2)
 		i++;
 	}
 	return (0);
+}
+
+void	sort_helper_1(t_stack **a_top)
+{
+	swap_element (a_top, 'a');
+	rotate_stack (a_top, 'a');
+}
+
+void	sort_helper_2(t_stack **a_top)
+{
+	swap_element (a_top, 'a');
+	r_rotate_stack (a_top, 'a');
 }

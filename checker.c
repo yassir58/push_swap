@@ -6,7 +6,7 @@
 /*   By: yelatman <yelatman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 15:43:11 by yelatman          #+#    #+#             */
-/*   Updated: 2022/03/12 19:47:26 by yelatman         ###   ########.fr       */
+/*   Updated: 2022/03/14 17:16:54 by yelatman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	apply_p_instr(t_stack **A, t_stack **B, char *instr)
 	else if (ft_strcmp (instr, "pb\n") == 0)
 		push_element (A, B, 'b');
 	else
-		return (1) ;
+		return (1);
 	return (0);
 }
 
@@ -30,7 +30,7 @@ int	apply_r_instr(t_stack **A, t_stack **B, char *instr)
 		rotate_stack (A, 'a');
 	else if (ft_strcmp (instr, "rb\n") == 0)
 		rotate_stack (B, 'b');
-	else if (strcmp (instr, "rra\n") == 0)
+	else if (ft_strcmp (instr, "rra\n") == 0)
 		r_rotate_stack (A, 'a');
 	else if (ft_strcmp (instr, "rrb\n") == 0)
 		r_rotate_stack (B, 'b');
@@ -39,7 +39,7 @@ int	apply_r_instr(t_stack **A, t_stack **B, char *instr)
 	else if (ft_strcmp (instr, "rrr\n") == 0)
 		r_rotate_r (A, B);
 	else
-		return  (1) ;
+		return (1);
 	return (0);
 }
 
@@ -59,7 +59,7 @@ int	apply_s_instr(t_stack **A, t_stack **B, char *instr)
 int	check_function(t_stack *a_top, t_stack *b_top)
 {
 	char	*str;
-	int err ;
+	int		err ;
 
 	str = get_next_line (0);
 	err = 0;
@@ -74,7 +74,7 @@ int	check_function(t_stack *a_top, t_stack *b_top)
 		else
 			err = 1;
 		if (err == 1)
-			break ;	
+			break ;
 		free (str);
 		str = get_next_line (0);
 	}
@@ -97,9 +97,7 @@ int	main(int argc, char *argv [])
 	vector = process_args (argc, argv);
 	if (!vector)
 		return (1);
-	check_for_valid_input (vector_size(vector), vector);
-	create_stack (&a_top, vector);
-	check_for_duplicate (a_top);
+	init_stack (vector, a_top);
 	if (!check_if_sorted (a_top))
 		err = check_function (a_top, b_top);
 	if (err == 1)

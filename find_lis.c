@@ -6,7 +6,7 @@
 /*   By: yelatman <yelatman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 13:31:20 by yelatman          #+#    #+#             */
-/*   Updated: 2022/03/12 13:46:27 by yelatman         ###   ########.fr       */
+/*   Updated: 2022/03/14 13:31:27 by yelatman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,15 +93,4 @@ void	mark_elements(int pos, t_stack **top)
 		get_elm (top, pos_tmp);
 		pos_tmp = get_indx (pos_tmp, top);
 	}
-}
-
-
-pos	*update_elm_pos(pos *elm_pos, pos *min)
-{
-	elm_pos->a_pos = min->a_pos;
-	elm_pos->b_pos = min->b_pos;
-	elm_pos->a_rotate = min->a_rotate;
-	elm_pos->b_rotate = min->b_rotate;
-	free (min);
-	return (elm_pos);
 }

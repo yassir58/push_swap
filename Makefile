@@ -1,14 +1,17 @@
 SRCS=stack.c instructions.c instructions_2.c utils.c utils_2.c utils_3.c valid_input.c \
 lis.c find_lis.c prepare_stack.c sort.c rotate.c  sort_utils.c\
-testing.c check_args.c check_args_utils.c libft_utils.c
-CHECKER_SRCS=checker.c  get_next_line.c get_next_line_utils.c instructions.c instructions_2.c utils.c utils_2.c \
-utils_3.c valid_input.c   testing.c  lis.c check_args.c check_args_utils.c libft_utils.c
+check_args.c check_args_utils.c libft_utils.c
+CHECKER_SRCS=checker.c  get_next_line.c get_next_line_utils.c \
+instructions.c instructions_2.c utils.c utils_2.c utils_3.c valid_input.c \
+lis.c find_lis.c prepare_stack.c sort.c rotate.c  sort_utils.c\
+check_args.c check_args_utils.c libft_utils.c
 OBJS=$(SRCS:.c=.o)
+CHECKER_OBJS=$(CHECKER_SRCS:.c=.o)
 NAME=push_swap
 CFLAGS= -Wall -Wextra -Werror
 CC=gcc
 
-$(NAME):$(OBJS)
+$(NAME):$(OBJS) push_swap.h
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 %.o: %.c
@@ -17,13 +20,10 @@ all:$(NAME)
 
 bonus:$(NAME) checker
 
-generator:
-	$(CC) $(CFLAGS) number_generator.c -o generator
-
-checker:
-	$(CC)  $(CFLAGS) $(CHECKER_SRCS)  -o checker 
+checker:$(CHECKER_OBJS) get_next_line.h
+	$(CC)  $(CFLAGS) $(CHECKER_OBJS)  -o checker 
 fclean: clean
 	rm -rf $(NAME) checker
 clean:
-	rm -rf *.o
+	rm -rf $(OBJS) $(CHECKER_OBJS)
 re:fclean all

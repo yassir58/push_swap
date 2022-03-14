@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yelatman <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yelatman <yelatman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 15:31:05 by yelatman          #+#    #+#             */
-/*   Updated: 2022/03/12 15:43:00 by yelatman         ###   ########.fr       */
+/*   Updated: 2022/03/14 13:27:28 by yelatman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ char	**push_str(char **dst_vector, char *str)
 	int		dst_size;
 	char	**final_vector;
 	int		i ;
+	char	**tmp;
 
 	i = 0;
 	dst_size = vector_size (dst_vector) + 2;
@@ -100,8 +101,10 @@ char	**push_str(char **dst_vector, char *str)
 		}
 		free_tab (dst_vector);
 	}
-	final_vector[i++] = ft_strdup ((char *)str);
+	tmp = ft_split (str, ' ');
+	final_vector[i++] = ft_strdup (tmp[0]);
 	final_vector[i] = NULL;
+	free_tab (tmp);
 	return (final_vector);
 }
 

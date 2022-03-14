@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yelatman <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yelatman <yelatman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 13:10:25 by yelatman          #+#    #+#             */
-/*   Updated: 2022/03/12 13:16:12 by yelatman         ###   ########.fr       */
+/*   Updated: 2022/03/14 12:36:09 by yelatman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	create_stack(t_stack **top, char *argv[])
 
 	a_top = NULL;
 	len = vector_size (argv);
-	a_top = create_node (atoi(argv[--len]));
+	a_top = create_node (ft_atoi(argv[--len]));
 	*top = a_top;
 	while (len--)
 		push_elm (top, create_node (atoi(argv[len])));
