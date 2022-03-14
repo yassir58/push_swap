@@ -94,3 +94,14 @@ void	mark_elements(int pos, t_stack **top)
 		pos_tmp = get_indx (pos_tmp, top);
 	}
 }
+
+
+pos	*update_elm_pos(pos *elm_pos, pos *min)
+{
+	elm_pos->a_pos = min->a_pos;
+	elm_pos->b_pos = min->b_pos;
+	elm_pos->a_rotate = min->a_rotate;
+	elm_pos->b_rotate = min->b_rotate;
+	free (min);
+	return (elm_pos);
+}

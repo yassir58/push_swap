@@ -12,52 +12,52 @@
 
 #include "push_swap.h"
 
-pos	*find_best(t_stack **A, t_stack **B, int elm)
+pos *find_best(t_stack **A, t_stack **B, int elm)
 {
-	t_stack	*top;
-	int		*a_pos;
-	int		*b_pos;
-	pos		*elm_pos;
+	t_stack *top;
+	pos *elm_pos;
 
 	top = *A;
-	elm_pos = init_pos (A, B);
-	if (elm > stack_max (*A) || elm < stack_min (*A))
-		return (get_max_pos(A, B, elm));
+	elm_pos = init_pos(A, B);
+	if (elm > stack_max(*A) || elm < stack_min(*A))
+		return (get_max_pos(A, B, elm, elm_pos));
 	if (last_check(A, elm))
 		return (set_last_pos(elm_pos, B, elm));
 	while (top)
 	{
 		if (elm > top->data && elm < top->next->data)
-		{
-			a_pos = check_position(A, get_elm_indx(A, top->next->data));
-			b_pos = check_position(B, get_elm_indx(B, elm));
-			return (update_pos(elm_pos, a_pos, b_pos));
-		}
+			return (update_pos(elm_pos, A, B, top->next->data, elm));
 		top = top->next;
 	}
 	return (elm_pos);
 }
 
-pos	*chose_best_elm(pos *elm_pos, pos *min)
+pos *chose_best_elm(pos *elm_pos, pos *min)
 {
 	if (elm_pos->a_rotate == elm_pos->b_rotate)
 	{
 		if (max_elm(elm_pos->a_pos, elm_pos->b_pos) < (min->a_pos + min->b_pos))
+		{
+			free (min);
 			return (elm_pos);
+		}
 	}
 	if ((elm_pos->a_pos + elm_pos->b_pos) < (min->a_pos + min->b_pos))
+	{
+		free (min);
 		return (elm_pos);
-	return (min);
+	}
+	return (update_elm_pos (elm_pos, min));
 }
 
-pos	*calculate_best_elm(t_stack **A, t_stack **B)
+pos *calculate_best_elm(t_stack **A, t_stack **B)
 {
-	t_stack	*temp_b;
-	pos		*tmp;
-	pos		*min;
+	t_stack *temp_b;
+	pos *tmp;
+	pos *min;
 
 	temp_b = *B;
-	tmp = init_pos(A, B);
+	tmp = NULL;
 	min = init_pos(A, B);
 	while (temp_b)
 	{
@@ -68,10 +68,10 @@ pos	*calculate_best_elm(t_stack **A, t_stack **B)
 	return (min);
 }
 
-void	sort_stack(t_stack **A, t_stack **B)
+void sort_stack(t_stack **A, t_stack **B)
 {
-	int	size;
-	pos	*pos;
+	int size;
+	pos *pos;
 
 	size = stack_length(*B);
 	while (size)

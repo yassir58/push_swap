@@ -24,26 +24,28 @@ pos	*init_pos(t_stack **A, t_stack **B)
 	return (elm_pos);
 }
 
-pos	*update_pos(pos *elm_pos, int *temp_pos_a, int *temp_pos_b)
+pos	*update_pos(pos *elm_pos, t_stack **A, t_stack **B, int a_elm, int b_elm)
 {
-	elm_pos->a_pos = temp_pos_a[0];
-	elm_pos->b_pos = temp_pos_b[0];
-	elm_pos->a_rotate = temp_pos_a[1];
-	elm_pos->b_rotate = temp_pos_b[1];
-	free (temp_pos_a);
-	free (temp_pos_b);
+	int *pos_a;
+	int *pos_b;
+	pos_a = check_position(A, get_elm_indx(A, a_elm));
+	pos_b = check_position(B, get_elm_indx(B, b_elm));
+	elm_pos->a_pos = pos_a[0];
+	elm_pos->b_pos = pos_b[0];
+	elm_pos->a_rotate = pos_a[1];
+	elm_pos->b_rotate = pos_b[1];
+	free (pos_a);
+	free (pos_b);
 	return (elm_pos);
 }
 
-pos	*get_max_pos(t_stack **A, t_stack **B, int elm)
+pos	*get_max_pos(t_stack **A, t_stack **B, int elm, pos *elm_pos)
 {
 	int	*a_pos;
 	int	*b_pos;
-	pos	*elm_pos;
 
 	a_pos = check_position (A, get_elm_indx (A, stack_min (*A)));
 	b_pos = check_position (B, get_elm_indx (B, elm));
-	elm_pos = init_pos (A, B);
 	elm_pos->a_pos = a_pos[0];
 	elm_pos->b_pos = b_pos[0];
 	elm_pos->a_rotate = a_pos[1];
