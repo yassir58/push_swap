@@ -40,10 +40,10 @@ void	create_stack(t_stack **top, char *argv[])
 
 	a_top = NULL;
 	len = vector_size (argv);
-	a_top = create_node (ft_atoi(argv[--len]));
+	a_top = create_node (range_number(ft_atoi(argv[--len]), top, argv));
 	*top = a_top;
 	while (len--)
-		push_elm (top, create_node (atoi(argv[len])));
+		push_elm (top, create_node (range_number(ft_atoi(argv[len]), top, argv)));
 }
 
 int	stack_length(t_stack *stack)
@@ -67,7 +67,7 @@ int	stack_max(t_stack *stack)
 	t_stack	*temp;
 
 	temp = stack;
-	max = 0;
+	max = temp->data;
 	while (temp != NULL)
 	{
 		if (temp->data > max)

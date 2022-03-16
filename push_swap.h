@@ -15,6 +15,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+#define _INT_MAX 2147483647
+#define _INT_MIN -2147483648
 typedef struct s_stack
 {
 	int				data;
@@ -108,7 +110,7 @@ char	**join_vector(char **dst_vector, char **src_vector);
 char	**push_str(char **dst_vector, char *str);
 char	**process_args(int argc, char *argv[]);
 void	free_tab(char **tab);
-int		ft_atoi(const char *str);
+long long int	ft_atoi(const char *str);
 char	*ft_strdup(const char *s1);
 int		vector_size(char **vector);
 int		ft_strcmp(const char *str1, const char *str2);
@@ -116,5 +118,6 @@ int		*get_arr(int a, int b);
 void	sort_helper_1(t_stack **a_top);
 void	sort_helper_2(t_stack **a_top);
 void	init_stack(char **vector, t_stack *a_top);
+int		range_number (long long int num, t_stack **stack, char **tab);
 
 #endif

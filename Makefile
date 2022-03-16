@@ -1,10 +1,10 @@
 SRCS=stack.c instructions.c instructions_2.c utils.c utils_2.c utils_3.c valid_input.c \
 lis.c find_lis.c prepare_stack.c sort.c rotate.c  sort_utils.c\
-check_args.c check_args_utils.c libft_utils.c
+check_args.c check_args_utils.c libft_utils.c checker_utils.c
 CHECKER_SRCS=checker.c  get_next_line.c get_next_line_utils.c \
 instructions.c instructions_2.c utils.c utils_2.c utils_3.c valid_input.c \
 lis.c find_lis.c prepare_stack.c sort.c rotate.c  sort_utils.c\
-check_args.c check_args_utils.c libft_utils.c
+check_args.c check_args_utils.c libft_utils.c checker_utils.c
 OBJS=$(SRCS:.c=.o)
 CHECKER_OBJS=$(CHECKER_SRCS:.c=.o)
 NAME=push_swap
