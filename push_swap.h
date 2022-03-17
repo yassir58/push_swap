@@ -6,7 +6,7 @@
 /*   By: yelatman <yelatman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 13:34:33 by yelatman          #+#    #+#             */
-/*   Updated: 2022/03/14 17:17:33 by yelatman         ###   ########.fr       */
+/*   Updated: 2022/03/17 12:51:33 by yelatman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-#define _INT_MAX 2147483647
-#define _INT_MIN -2147483648
+# define _INT_MAX 2147483647
+# define _INT_MIN -2147483648
+
+typedef long long int	t_long ;
+
 typedef struct s_stack
 {
 	int				data;
@@ -57,7 +60,7 @@ t_stack	*pop_elm(t_stack **top);
 int		valid_number(char *str);
 int		valid_input(char *argv []);
 void	check_for_valid_input(int argc, char *argv[]);
-void	check_for_duplicate(t_stack *stack);
+void	check_for_duplicate(t_stack *stack, char **vector);
 void	print_stack(t_stack *top);
 void	sort_5(t_stack **A, t_stack **B);
 t_pos	*pair_elm(t_stack **A, t_stack **B, int B_elm);
@@ -110,7 +113,7 @@ char	**join_vector(char **dst_vector, char **src_vector);
 char	**push_str(char **dst_vector, char *str);
 char	**process_args(int argc, char *argv[]);
 void	free_tab(char **tab);
-long long int	ft_atoi(const char *str);
+t_long	ft_atoi(const char *str);
 char	*ft_strdup(const char *s1);
 int		vector_size(char **vector);
 int		ft_strcmp(const char *str1, const char *str2);
@@ -118,6 +121,7 @@ int		*get_arr(int a, int b);
 void	sort_helper_1(t_stack **a_top);
 void	sort_helper_2(t_stack **a_top);
 void	init_stack(char **vector, t_stack *a_top);
-int		range_number (long long int num, t_stack **stack, char **tab);
+int		range_num(long long int num, t_stack **stack, char **tab);
+void	clean_function(t_stack *a_top, t_stack *b_top, char **vector);
 
 #endif

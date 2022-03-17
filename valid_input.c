@@ -21,11 +21,13 @@ void	check_for_valid_input(int argc, char *argv[])
 	}
 }
 
-void	check_for_duplicate(t_stack *stack)
+void	check_for_duplicate(t_stack *stack, char **vector)
 {
 	if (!check_duplicate (stack))
 	{
 		write (2, "Duplicte element found\n", 24);
+		free_stack(&stack);
+		free_tab (vector);
 		exit (0);
 	}
 }
@@ -34,7 +36,7 @@ void	init_stack(char **vector, t_stack *a_top)
 {
 	check_for_valid_input (vector_size(vector), vector);
 	create_stack (&a_top, vector);
-	check_for_duplicate (a_top);
+	check_for_duplicate (a_top, vector);
 }
 
 t_pos	*update_elm_pos(t_pos *elm_pos, t_pos *min)

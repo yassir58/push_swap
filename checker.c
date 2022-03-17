@@ -97,7 +97,9 @@ int	main(int argc, char *argv [])
 	vector = process_args (argc, argv);
 	if (!vector)
 		return (1);
-	init_stack (vector, a_top);
+	check_for_valid_input (vector_size(vector), vector);
+	create_stack (&a_top, vector);
+	check_for_duplicate (a_top, vector);
 	if (!check_if_sorted (a_top))
 		err = check_function (a_top, b_top);
 	if (err == 1)
@@ -106,7 +108,6 @@ int	main(int argc, char *argv [])
 		write (1, "KO\n", 3);
 	else if (err == 0)
 		write (1, "OK\n", 3);
-	free_all (a_top, b_top);
-	free_tab (vector);
+	clean_function (a_top, b_top, vector);
 	return (0);
 }

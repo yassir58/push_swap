@@ -74,7 +74,7 @@ int	main(int argc, char *argv [])
 		return (1);
 	check_for_valid_input (vector_size (vector), vector);
 	create_stack (&a_top, vector);
-	check_for_duplicate (a_top);
+	check_for_duplicate (a_top, vector);
 	check_if_sorted (a_top);
 	if (vector_size (vector) == 3)
 		sort_3 (&a_top);

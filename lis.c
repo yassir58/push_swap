@@ -38,8 +38,8 @@ int	check_if_sorted(t_stack *stack)
 	int		checker;
 	t_stack	*temp;
 
-	checker = 0;
 	temp = stack;
+	checker = temp->data;
 	while (temp != NULL)
 	{
 		if (temp->data < checker)
