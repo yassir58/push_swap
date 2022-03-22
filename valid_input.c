@@ -12,10 +12,11 @@
 
 #include "push_swap.h"
 
-void	check_for_valid_input(int argc, char *argv[])
+void	check_for_valid_input(char *argv[])
 {
-	if (argc == 1 || !valid_input (argv))
+	if (!valid_input (argv))
 	{
+		free_tab (argv);
 		write (2, "Error! Invalid Input\n", 22);
 		exit (0);
 	}
@@ -30,13 +31,6 @@ void	check_for_duplicate(t_stack *stack, char **vector)
 		free_tab (vector);
 		exit (0);
 	}
-}
-
-void	init_stack(char **vector, t_stack *a_top)
-{
-	check_for_valid_input (vector_size(vector), vector);
-	create_stack (&a_top, vector);
-	check_for_duplicate (a_top, vector);
 }
 
 t_pos	*update_elm_pos(t_pos *elm_pos, t_pos *min)

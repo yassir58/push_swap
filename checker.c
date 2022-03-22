@@ -13,74 +13,28 @@
 #include "push_swap.h"
 #include "get_next_line.h"
 
-int	apply_p_instr(t_stack **A, t_stack **B, char *instr)
-{
-	if (ft_strcmp (instr, "pa\n") == 0)
-		push_element (A, B, 'a');
-	else if (ft_strcmp (instr, "pb\n") == 0)
-		push_element (A, B, 'b');
-	else
-		return (1);
-	return (0);
-}
-
-int	apply_r_instr(t_stack **A, t_stack **B, char *instr)
-{
-	if (ft_strcmp (instr, "ra\n") == 0)
-		rotate_stack (A, 'a');
-	else if (ft_strcmp (instr, "rb\n") == 0)
-		rotate_stack (B, 'b');
-	else if (ft_strcmp (instr, "rra\n") == 0)
-		r_rotate_stack (A, 'a');
-	else if (ft_strcmp (instr, "rrb\n") == 0)
-		r_rotate_stack (B, 'b');
-	else if (ft_strcmp (instr, "rr\n") == 0)
-		rotate_r (A, B);
-	else if (ft_strcmp (instr, "rrr\n") == 0)
-		r_rotate_r (A, B);
-	else
-		return (1);
-	return (0);
-}
-
-int	apply_s_instr(t_stack **A, t_stack **B, char *instr)
-{
-	if (ft_strcmp (instr, "sa\n") == 0)
-		swap_element (A, 'a');
-	else if (ft_strcmp (instr, "sb\n") == 0)
-		swap_element (B, 'b');
-	else if (ft_strcmp (instr, "ss\n") == 0)
-		swap_s (A, B);
-	else
-		return (1);
-	return (0);
-}
-
-int	check_function(t_stack *a_top, t_stack *b_top)
+char	**check_function(void)
 {
 	char	*str;
-	int		err ;
+	char	**instr_tab;
 
 	str = get_next_line (0);
-	err = 0;
+	instr_tab = NULL;
 	while (str)
 	{
-		if (str[0] == 's')
-			err = apply_s_instr (&a_top, &b_top, str);
-		else if (str[0] == 'p')
-			err = apply_p_instr (&a_top, &b_top, str);
-		else if (str[0] == 'r')
-			err = apply_r_instr (&a_top, &b_top, str);
+		if (valid_instructions (str))
+			instr_tab = join_vector (instr_tab, one_word_tab (str));
+		else if (!ft_strcmp (str, "\n"))
+		{
+			free (str);
+			return (instr_tab);
+		}
 		else
-			err = 1;
-		if (err == 1)
-			break ;
+			return (instruction_err (str, instr_tab));
 		free (str);
 		str = get_next_line (0);
 	}
-	if (err == 1)
-		free (str);
-	return (err);
+	return (instr_tab);
 }
 
 int	main(int argc, char *argv [])
@@ -88,26 +42,31 @@ int	main(int argc, char *argv [])
 	t_stack	*a_top;
 	t_stack	*b_top;
 	char	**vector;
-	int		err;
+	char	**instr;
 
-	err = 2;
 	b_top = NULL;
 	a_top = NULL;
 	vector = NULL;
 	vector = process_args (argc, argv);
 	if (!vector)
 		return (1);
-	check_for_valid_input (vector_size(vector), vector);
-	create_stack (&a_top, vector);
-	check_for_duplicate (a_top, vector);
-	if (!check_if_sorted (a_top))
-		err = check_function (a_top, b_top);
-	if (err == 1)
-		write (1, "Error, Invalid Instruction\n", 27);
-	if (!check_if_sorted (a_top) && err == 0)
-		write (1, "KO\n", 3);
-	else if (err == 0)
+	init_stack (&a_top, vector);
+	if (check_if_sorted (a_top, b_top))
+	{
 		write (1, "OK\n", 3);
-	clean_function (a_top, b_top, vector);
+		clean_function (a_top, b_top, vector);
+		exit (0);
+	}
+	instr = check_function ();
+	if (instr)
+	{
+		sort_test (&a_top, &b_top, instr);
+		if (check_if_sorted (a_top, b_top))
+			write (1, "OK\n", 3);
+		else
+			write (1, "KO\n", 3);
+	}
+	free_tab (instr);
+	clean_function (a_top, b_top, vector); 
 	return (0);
 }

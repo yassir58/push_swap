@@ -55,7 +55,7 @@ char	**join_vector(char **dst_vector, char **src_vector)
 {
 	int		dst_size;
 	char	**final_vector;
-	int		i ;
+	int		i;
 	int		j;
 
 	i = 0;
@@ -80,34 +80,6 @@ char	**join_vector(char **dst_vector, char **src_vector)
 	return (final_vector);
 }
 
-char	**push_str(char **dst_vector, char *str)
-{
-	int		dst_size;
-	char	**final_vector;
-	int		i ;
-	char	**tmp;
-
-	i = 0;
-	dst_size = vector_size (dst_vector) + 2;
-	final_vector = (char **) malloc (sizeof (char *) * dst_size);
-	if (!final_vector)
-		return (NULL);
-	if (dst_vector)
-	{
-		while (dst_vector[i])
-		{
-			final_vector[i] = ft_strdup (dst_vector[i]);
-			i++;
-		}
-		free_tab (dst_vector);
-	}
-	tmp = ft_split (str, ' ');
-	final_vector[i++] = ft_strdup (tmp[0]);
-	final_vector[i] = NULL;
-	free_tab (tmp);
-	return (final_vector);
-}
-
 char	**process_args(int argc, char *argv[])
 {
 	char	**final_vector;
@@ -117,11 +89,13 @@ char	**process_args(int argc, char *argv[])
 	final_vector = NULL;
 	while (i < argc)
 	{
-		if (is_splitable (argv[i]) > 1)
+		if (is_splitable(argv[i]) == 0)
+			return (handle_err ());
+		else if (is_splitable (argv[i]) >= 1 && !one_word (argv[i]))
 			final_vector = join_vector (final_vector, ft_split (argv[i], ' '));
-		else
-			final_vector = push_str (final_vector, argv[i]);
+		else if (one_word (argv[i]))
+			final_vector = join_vector (final_vector, one_word_tab(argv[i]));
 		i++;
-	}	
+	}
 	return (final_vector);
 }

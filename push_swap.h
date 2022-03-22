@@ -15,6 +15,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+/// testing 
+#include <stdio.h>
+
 # define _INT_MAX 2147483647
 # define _INT_MIN -2147483648
 
@@ -48,7 +51,7 @@ void	sort_3(t_stack **a_top);
 t_stack	*create_node(int data);
 int		check_duplicate(t_stack *top);
 void	create_stack(t_stack **top, char *argv[]);
-int		check_if_sorted(t_stack *stack);
+int		check_if_sorted(t_stack *stack, t_stack *stack_b);
 int		stack_length(t_stack *stack);
 int		stack_max(t_stack *stack);
 void	position_elm_top(t_stack **stack, int elm_indx);
@@ -59,7 +62,7 @@ void	push_elm(t_stack **top, t_stack *node);
 t_stack	*pop_elm(t_stack **top);
 int		valid_number(char *str);
 int		valid_input(char *argv []);
-void	check_for_valid_input(int argc, char *argv[]);
+void	check_for_valid_input(char *argv[]);
 void	check_for_duplicate(t_stack *stack, char **vector);
 void	print_stack(t_stack *top);
 void	sort_5(t_stack **A, t_stack **B);
@@ -102,12 +105,12 @@ void	set_indx_len(t_stack **node, int len, int indx);
 t_pos	*update_elm_pos(t_pos *elm_pos, t_pos *min);
 int		found_elm(char *instr[], char *ins);
 int		check_valid_instr(char *argv);
-int		apply_p_instr(t_stack **A, t_stack **B, char *instr);
-int		apply_r_instr(t_stack **A, t_stack **B, char *instr);
-int		apply_s_instr(t_stack **A, t_stack **B, char *instr);
-void	valid_instructions(char *arg, t_stack *A, t_stack *B);
+void	apply_p_instr(t_stack **A, t_stack **B, char *instr);
+void	apply_r_instr(t_stack **A, t_stack **B, char *instr);
+void	apply_s_instr(t_stack **A, t_stack **B, char *instr);
+int		valid_instructions(char *arg);
 void	free_all(t_stack *A, t_stack *B);
-int		check_function(t_stack *a_top, t_stack *b_top);
+char	**check_function(void);
 char	**ft_split(char const *s, char c);
 char	**join_vector(char **dst_vector, char **src_vector);
 char	**push_str(char **dst_vector, char *str);
@@ -120,8 +123,14 @@ int		ft_strcmp(const char *str1, const char *str2);
 int		*get_arr(int a, int b);
 void	sort_helper_1(t_stack **a_top);
 void	sort_helper_2(t_stack **a_top);
-void	init_stack(char **vector, t_stack *a_top);
 int		range_num(long long int num, t_stack **stack, char **tab);
 void	clean_function(t_stack *a_top, t_stack *b_top, char **vector);
+void 	*handle_err ();
+int 	one_word (char *str);
+char	**one_word_tab (char *str);
+void *instruction_err (char *str, char **tab);
+void init_stack (t_stack **a_top, char **vector);
+void sort_test (t_stack **a_top, t_stack **b_top, char **instr);
+void rotate_instructions (t_stack **a_top, t_stack **b_top, char *instr);
 
 #endif

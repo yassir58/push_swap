@@ -53,3 +53,10 @@ void	move_non_lis(t_stack **A, t_stack **B)
 		tmp_a = *A;
 	}
 }
+
+void init_stack(t_stack **a_top, char **vector)
+{
+	check_for_valid_input (vector);
+	create_stack (a_top, vector);
+	check_for_duplicate (*a_top, vector);
+}

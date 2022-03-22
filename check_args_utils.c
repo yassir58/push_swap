@@ -66,7 +66,10 @@ static char	*fill_tab(char const *s, int *start, int finish, char **tab)
 	i = 0;
 	str = malloc((finish - *start + 1) * sizeof(char));
 	if (!str)
+	{
 		free_tab(tab);
+		return (NULL);
+	}
 	while ((*start) < finish)
 		str[i++] = s[(*start)++];
 	str[i] = '\0';

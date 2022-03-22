@@ -33,12 +33,14 @@ void	free_stack(t_stack **stack)
 	}
 }
 
-int	check_if_sorted(t_stack *stack)
+int	check_if_sorted(t_stack *stack, t_stack *stack_b)
 {
 	int		checker;
 	t_stack	*temp;
 
 	temp = stack;
+	if (stack_length (stack) == 0 || stack_length (stack_b) > 0)
+		return (0);
 	checker = temp->data;
 	while (temp != NULL)
 	{

@@ -32,3 +32,40 @@ void	clean_function(t_stack *a_top, t_stack *b_top, char **vector)
 	free_all (a_top, b_top);
 	free_tab (vector);
 }
+
+void *handle_err ()
+{
+	write (2, "Error !\n", 8);
+	return (NULL);
+}
+
+int one_word (char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == ' ')
+			return (0);
+		i++;
+	}
+	if (i > 0)
+		return (1);
+	return (0);
+}
+
+char **one_word_tab (char *str)
+{
+	char **tab;
+	int i;
+
+	i = 0;
+	tab = malloc (sizeof (char*) * 2);
+	if (!tab)
+		return (NULL);
+	if (str)
+		tab[i++] = ft_strdup(str);
+	tab[i] = NULL;
+	return (tab);
+}

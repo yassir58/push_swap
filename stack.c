@@ -60,11 +60,14 @@ void	sort_5(t_stack **a_top, t_stack **b_top)
 	push_element (a_top, b_top, 'a');
 }
 
+
+
 int	main(int argc, char *argv [])
 {
 	t_stack	*a_top;
 	t_stack	*b_top;
 	char	**vector;
+	int err;
 
 	b_top = NULL;
 	a_top = NULL;
@@ -72,13 +75,13 @@ int	main(int argc, char *argv [])
 	vector = process_args (argc, argv);
 	if (!vector)
 		return (1);
-	check_for_valid_input (vector_size (vector), vector);
-	create_stack (&a_top, vector);
-	check_for_duplicate (a_top, vector);
-	check_if_sorted (a_top);
-	if (vector_size (vector) == 3)
+	init_stack (&a_top, vector);
+	err = check_if_sorted (a_top, b_top);
+	if (vector_size (vector) == 2 && !err)
+		swap_element (&a_top, 'a');
+	if (vector_size (vector) == 3 && !err)
 		sort_3 (&a_top);
-	else if (vector_size (vector) == 5)
+	else if (vector_size (vector) == 5 && !err)
 		sort_5 (&a_top, &b_top);
 	else
 		sort_all (&a_top, &b_top);
